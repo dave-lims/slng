@@ -3,7 +3,7 @@
 body {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #0d124a;
   background-color: #fafafa;
 }
@@ -20,7 +20,7 @@ h4,
 h5,
 h6 {
   margin-bottom: 1rem;
-  font-family: "Fira Sans";
+  font-family: "Montserrat", sans-serif;
   line-height: 1.6em;
   font-weight: 600;
   color: #0d124a;
@@ -109,6 +109,73 @@ table {
 
 .table {
   background-color: #f1f1f1;
+}
+
+.chat-history {
+  height: calc(100vh - 200px); /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.message-wrapper {
+  margin-bottom: 45px;
+  clear: both;
+}
+
+.user .message-bubble {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 70%;
+  float: right;
+}
+
+.bot .message-bubble {
+  background-color: #e4e4ec;
+  color: #000;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 70%;
+  float: left;
+}
+
+@media (max-width: 768px) {
+  .message-bubble {
+    max-width: 90%; /* Adjust as needed */
+  }
+}
+
+/* Prevent text from shrinking */
+body {
+  min-width: 320px; /* Set a minimum width for the body */
+  font-size: 16px; /* Set a base font size */
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loading {
+  position: relative;
+  z-index: 15;
 }
 
 /* LIST GROUP ITEM */
