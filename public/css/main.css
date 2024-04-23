@@ -121,8 +121,13 @@ table {
 }
 
 .message-wrapper {
-  margin-bottom: 45px;
+  margin-bottom: 10px;
   clear: both;
+}
+
+.message-bubble {
+  margin-bottom: 10px;
+  overflow-wrap: break-word;
 }
 
 .user .message-bubble {
