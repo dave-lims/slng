@@ -83,7 +83,24 @@
           }
         ).then(response => response.text());
 
-        appendMessage(response, 'bot');
+        let message = "";
+
+        const r = JSON.parse(response);
+        for (const key in r) {
+          if (key == "EXPLANATION") {
+            console.log("yahoooooooo");
+            message += "<br>"
+            //message += "<span id='exp-break'>"
+          }
+          message += `<b>${key}</b><br>`;
+          message += r[key];
+          message += "<br>"
+        }
+
+        
+        console.log(message);
+
+        appendMessage(message, 'bot');
 
         document.getElementById('loading').style.display = 'none';
 
@@ -99,7 +116,7 @@
 
         const messageBubble = document.createElement("div");
         messageBubble.classList.add("message-bubble");
-        messageBubble.textContent = message;
+        messageBubble.innerHTML = message;
 
         messageWrapper.appendChild(messageBubble);
         chatHistory.appendChild(messageWrapper);
