@@ -2,11 +2,9 @@
 <html>
   <head>
     <title>SLNG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    rel="stylesheet">
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -26,45 +24,92 @@
 
   <body>
     <div class="container">
-      <h1>SLNG</h1>
+      <div class="image-hold">
+      <img id='logo' src="./emails/7.png" style="max-width:10%">
+
+      <div class="spinner" id="loading" style="display: none;">
+      </div>
+      
+      <input 
+          id = "mode"
+          type="image" 
+          src="./emails/10.png"
+          style="max-width: 5%; max-height: 5%"
+        />
+      </div>
+
 
       <!-- <textarea class="form-control" rows="5" id="chat-history"></textarea> -->
 
       <div id="chat-history" class="chat-history">
         <!-- Messages will be populated here -->
-      </div>
+        
+    </div>
 
       <div class="input-group mb-3">
+        <div class="containbottom">
+
+        <input 
+          id = "photo"
+          type="image" 
+          src="./emails/1.png"
+          style="max-width:3%"
+        />
+
+        <div id="gap"></div>
+
         <input
           type="text"
-          class="form-control"
+          class="round-text"
           id="query-input"
           placeholder="Enter text... (limit 1000 characters)"
           aria-label="Query"
         />
-        <button
-          class="btn btn-outline-primary"
-          type="button"
-          id="send-button"
-        >
-          Send
-        </button>
 
-        <div id="loading" style="display: none;">
-          <div class="spinner"></div>
-        </div>
+        <input 
+          id = "send-button"
+          type="image" 
+          src="./emails/3.png"
+          style="max-width:3%"
+        />
+
+        <div id="gap"></div>
+
+        <input 
+          id = "voice"
+          type="image" 
+          src="./emails/5.png"
+          style="max-width:3%"
+        />
+
+
+
+
       </div>
     </div>
 
     <script>
+
+      const lightdark = document.getElementById("mode");
+      var check = 0;
+
+      lightdark.addEventListener("click", async () => {
+        change();
+      });
+
       const suggestButton = document.getElementById("send-button");
+      
 
       suggestButton.addEventListener("click", async () => {
         const queryInput = document.getElementById("query-input");
         const query = queryInput.value;
+      
+        
 
         appendMessage(query, 'user');
 
+      
+      
         // Show loading icon
         document.getElementById('loading').style.display = 'block';
 
@@ -86,23 +131,122 @@
         appendMessage(response, 'bot');
 
         document.getElementById('loading').style.display = 'none';
-
+      
         queryInput.value = '';
       });
+
+
+      function change() {
+        if (check == 0) {
+          document.getElementById("photo").src="./emails/2.png";
+          document.getElementById("send-button").src="./emails/4.png";
+          document.getElementById("voice").src="./emails/6.png";
+          document.getElementById("mode").src="./emails/11.png";
+          document.getElementById("logo").src="./emails/8.png";
+          document.getElementById("query-input").style.backgroundColor = "#3b3b3b"
+          document.getElementById("query-input").style.color = 'white';
+          document.getElementById("chat-history").style.backgroundColor = "#3b3b3b"
+          document.body.style.backgroundColor = "#141414";
+
+          var allbottext = document.querySelectorAll('.dark-bot .message-bubble');
+
+          allbottext.forEach(function(text) {
+            text.style.backgroundColor = '#636363'; 
+            text.style.color = 'white';
+          });
+
+          var allusertext = document.querySelectorAll('.dark-user .message-bubble');
+
+          allusertext.forEach(function(text) {
+            text.style.backgroundColor = '#3077FA'; 
+          });
+          
+          var allbottext = document.querySelectorAll('.light-bot .message-bubble');
+
+          allbottext.forEach(function(text) {
+            text.style.backgroundColor = '#636363'; 
+            text.style.color = 'white';
+          });
+
+          var allusertext = document.querySelectorAll('.light-user .message-bubble');
+
+          allusertext.forEach(function(text) {
+            text.style.backgroundColor = '#3077FA'; 
+          });
+
+          check = 1
+        }
+        else {
+          document.getElementById("photo").src="./emails/1.png";
+          document.getElementById("send-button").src="./emails/3.png";
+          document.getElementById("voice").src="./emails/5.png";
+          document.getElementById("mode").src="./emails/10.png";
+          document.getElementById("logo").src="./emails/7.png";
+          document.getElementById("query-input").style.backgroundColor = "white"
+          document.getElementById("query-input").style.color = 'black';
+          document.getElementById("chat-history").style.backgroundColor = "white"
+          document.body.style.backgroundColor = "#eeeeee";
+
+          var allbottext = document.querySelectorAll('.dark-bot .message-bubble');
+
+          allbottext.forEach(function(text) {
+            text.style.backgroundColor = '#E1E1E1'; 
+            text.style.color = 'black';
+          });
+
+          var allusertext = document.querySelectorAll('.dark-user .message-bubble');
+
+          allusertext.forEach(function(text) {
+            text.style.backgroundColor = '#659BFF'; 
+          });
+
+          var allbottext = document.querySelectorAll('.light-bot .message-bubble');
+
+          allbottext.forEach(function(text) {
+            text.style.backgroundColor = '#E1E1E1'; 
+            text.style.color = 'black';
+          });
+
+          var allusertext = document.querySelectorAll('.light-user .message-bubble');
+
+          allusertext.forEach(function(text) {
+            text.style.backgroundColor = '#659BFF'; 
+          });
+
+          check = 0
+        }
+      }
 
       function appendMessage(message, sender) {
         const chatHistory = document.getElementById("chat-history");
 
-        const messageWrapper = document.createElement("div");
-        messageWrapper.classList.add("message-wrapper");
-        messageWrapper.classList.add(sender === 'user' ? 'user' : 'bot');
+        if (check == 1) {
+          const messageWrapper = document.createElement("div");
+          messageWrapper.classList.add("message-wrapper");
+          messageWrapper.classList.add(sender === 'user' ? 'dark-user' : 'dark-bot');
 
-        const messageBubble = document.createElement("div");
-        messageBubble.classList.add("message-bubble");
-        messageBubble.textContent = message;
+          const messageBubble = document.createElement("div");
+          messageBubble.classList.add("message-bubble");
+          messageBubble.textContent = message;
 
-        messageWrapper.appendChild(messageBubble);
-        chatHistory.appendChild(messageWrapper);
+
+          messageWrapper.appendChild(messageBubble);
+          chatHistory.appendChild(messageWrapper);
+        }
+        else {
+          const messageWrapper = document.createElement("div");
+          messageWrapper.classList.add("message-wrapper");
+          messageWrapper.classList.add(sender === 'user' ? 'light-user' : 'light-bot');
+
+          const messageBubble = document.createElement("div");
+          messageBubble.classList.add("message-bubble");
+          messageBubble.textContent = message;
+
+
+          messageWrapper.appendChild(messageBubble);
+          chatHistory.appendChild(messageWrapper);
+        }
+      
 
         // Scroll to the bottom of the chat history
         chatHistory.scrollTop = chatHistory.scrollHeight;
