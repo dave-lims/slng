@@ -106,43 +106,24 @@
       
         
 
-      appendMessage(query, 'user');
+        appendMessage(query, 'user');
 
       
       
         // Show loading icon
         document.getElementById('loading').style.display = 'block';
-        // import fetch from 'node-fetch'; // for node.js
-        /**
+
         const response = await fetch(
-          'https://noggin.rea.gent/successive-tarantula-5436',
+          'https://noggin.rea.gent/delicious-swordtail-5909',
           {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              Authorization: 'Bearer rg_v1_3003tv73mvhvl3fpsurwyhfr9pyermur8mnj_ngk',
+              Authorization: 'Bearer rg_v1_3w3bcpj4bxhrjk7d50vgopt3ugcgn4pm0663_ngk',
             },
             body: JSON.stringify({
               // fill variables here.
               "prompt": query,
-            }),
-          }
-        ).then(response => response.text());
-        */
-
-        // import fetch from 'node-fetch'; // for node.js
-
-        const response = await fetch(
-          'https://noggin.rea.gent/expected-haddock-5316',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer rg_v1_pfdd2i29l2cwk7urydgjb24aigd905pa14g8_ngk',
-            },
-            body: JSON.stringify({
-              // fill variables here.
-              "prompt": "",
             }),
           }
         ).then(response => response.text());
