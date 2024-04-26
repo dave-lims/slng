@@ -3,9 +3,9 @@
 body {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Inter", sans-serif;
   color: #0d124a;
-  background-color: #fafafa;
+  background-color: #eeeeee;
 }
 
 b,
@@ -82,6 +82,19 @@ a:hover {
 
 .container {
   max-width: 960px;
+  overflow: hidden;
+  margin-top: -30px;
+}
+
+.containbottom {
+  max-width: 960px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+img {
+  flex-shrink: 0; /* Prevent image from shrinking */
 }
 
 /* TABLES */
@@ -95,6 +108,14 @@ table {
   padding: 0.75rem;
   vertical-align: top;
   border-top: none;
+}
+
+.image-hold {
+  display: flex;
+  justify-content: space-between;
+  max-width: 960px;
+  overflow: hidden;
+  align-items: center;
 }
 
 .table thead th {
@@ -111,13 +132,27 @@ table {
   background-color: #f1f1f1;
 }
 
+.round-text {
+  border-radius: 25px;
+  background-color:white;
+  padding: 20px; 
+  width: 100%;
+  height: 20px;  
+  border: none;
+  margin-right: -35px;
+  outline-color: #09f;
+}
+
+
+
 .chat-history {
   height: calc(100vh - 200px); /* Adjust as needed */
   overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none;
+  border-radius: 20px;
   padding: 10px;
   margin-bottom: 20px;
+  background-color: white;
 }
 
 .message-wrapper {
@@ -130,22 +165,47 @@ table {
   overflow-wrap: break-word;
 }
 
-.user .message-bubble {
-  background-color: #007bff;
+
+
+.light-user .message-bubble {
+  background-color: #659BFF;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 25px;
   padding: 10px;
   max-width: 70%;
   float: right;
 }
 
-.bot .message-bubble {
-  background-color: #e4e4ec;
+.dark-user .message-bubble {
+  background-color: #3077FA;
+  color: #fff;
+  border-radius: 25px;
+  padding: 10px;
+  max-width: 70%;
+  float: right;
+}
+
+
+
+
+.light-bot .message-bubble {
+  background-color: #E1E1E1;
   color: #000;
-  border-radius: 10px;
+  border-radius: 25px;
   padding: 10px;
   max-width: 70%;
   float: left;
+  
+}
+
+.dark-bot .message-bubble {
+  background-color: #636363;
+  color: white;
+  border-radius: 25px;
+  padding: 10px;
+  max-width: 70%;
+  float: left;
+  
 }
 
 @media (max-width: 768px) {
@@ -167,6 +227,20 @@ body {
   border-radius: 50%;
   border-left-color: #09f;
   animation: spin 1s ease infinite;
+}
+
+#gap {
+  width: 12px;
+  height: 36px;
+  visibility: hidden;
+  border-collapse: separate;
+}
+
+#gap2 {
+  width: 30px;
+  height: 36px;
+  visibility: hidden;
+  border-collapse: separate;
 }
 
 @keyframes spin {
