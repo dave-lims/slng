@@ -98,6 +98,31 @@
       });
 
       const suggestButton = document.getElementById("send-button");
+      const voiceButton = document.getElementById("voice");
+      let voiceCommand = "";
+
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      voiceButton.onclick = () => {
+        // You should also remove this class once the recognizer is done listening.
+        voiceButton.classList.add("listening");
+        console.log("mic clicked, listening")
+        recognition.start();
+      };
+
+      recognition.onresult = (event) => {
+        voiceCommand = event.results[0][0].transcript.toLowerCase();
+        voiceButton.classList.remove("listening");
+        const queryInput = document.getElementById("query-input");
+        queryInput.value = voiceCommand;
+      };
       
 
       suggestButton.addEventListener("click", async () => {
