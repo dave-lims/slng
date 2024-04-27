@@ -201,3 +201,7 @@ body {
   background-color: #f1f1f1;
   border: 1px solid #0d124a11;
 }
+
+.br-spacing {
+  margin-bottom: 3rem;
+}
