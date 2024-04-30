@@ -11,6 +11,8 @@
       href="/vendor/bootstrap/css/bootstrap.css"
     />
     <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- v5 -->
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,12 +50,14 @@
 
       <div class="input-group mb-3">
         <div class="containbottom">
-
+        
+        
         <input 
           id = "photo"
           type="image" 
           src="./emails/1.png"
           style="max-width:3%"
+          onclick="photo.click()"
         />
 
         <div id="gap"></div>
@@ -81,7 +85,8 @@
           src="./emails/5.png"
           style="max-width:3%"
         />
-
+        
+        <input id="imageInput" type="file" accept="image/*" style="display: none;">
 
 
 
@@ -96,8 +101,43 @@
       lightdark.addEventListener("click", async () => {
         change();
       });
+      
+      const photo = document.getElementById("imageInput");
+      photo.addEventListener("change", async(event) => {
+        const image = event.target.files[0];
+        const imageURL = URL.createObjectURL(image);
+        const worker = await Tesseract.createWorker('eng');
+        const ret = await worker.recognize(imageURL);
+        await worker.terminate();
+        document.getElementById("query-input").value = ret.data.text
+      })
 
       const suggestButton = document.getElementById("send-button");
+      const voiceButton = document.getElementById("voice");
+      let voiceCommand = "";
+
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      voiceButton.onclick = () => {
+        // You should also remove this class once the recognizer is done listening.
+        voiceButton.classList.add("listening");
+        console.log("mic clicked, listening")
+        recognition.start();
+      };
+
+      recognition.onresult = (event) => {
+        voiceCommand = event.results[0][0].transcript.toLowerCase();
+        voiceButton.classList.remove("listening");
+        const queryInput = document.getElementById("query-input");
+        queryInput.value = voiceCommand;
+      };
       
 
       suggestButton.addEventListener("click", async () => {
