@@ -129,12 +129,14 @@
 
       voiceButton.onclick = () => {
         // You should also remove this class once the recognizer is done listening.
-        if (isListening == false) {
+        if (isListening == false) {// Save the current icon
+          voiceButton.src = "./emails/12.png";  // Change to red stop icon
           voiceButton.classList.add("listening");
           console.log("mic clicked, listening");
           isListening = true;
           recognition.start();
         } else {
+          voiceButton.src = check == 0 ? "./emails/5.png" : "./emails/6.png";
           voiceButton.classList.remove("listening");
           console.log("mic clicked, stopping listening");
           isListening = false;
@@ -206,7 +208,9 @@
         if (check == 0) {
           document.getElementById("photo").src="./emails/2.png";
           document.getElementById("send-button").src="./emails/4.png";
-          document.getElementById("voice").src="./emails/6.png";
+          if (isListening == false) {
+            document.getElementById("voice").src="./emails/6.png";
+          }
           document.getElementById("mode").src="./emails/11.png";
           document.getElementById("logo").src="./emails/8.png";
           document.getElementById("query-input").style.backgroundColor = "#3b3b3b"
@@ -245,7 +249,9 @@
         else {
           document.getElementById("photo").src="./emails/1.png";
           document.getElementById("send-button").src="./emails/3.png";
-          document.getElementById("voice").src="./emails/5.png";
+          if (isListening == false) {
+            document.getElementById("voice").src="./emails/5.png";
+          }
           document.getElementById("mode").src="./emails/10.png";
           document.getElementById("logo").src="./emails/7.png";
           document.getElementById("query-input").style.backgroundColor = "white"
