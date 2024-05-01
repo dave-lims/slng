@@ -121,22 +121,31 @@
 
       const recognition = new SpeechRecognition();
       recognition.lang = "en-US";
-      recognition.continuous = false;
+      recognition.continuous = true;
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
 
+      var isListening = false;
+
       voiceButton.onclick = () => {
         // You should also remove this class once the recognizer is done listening.
-        voiceButton.classList.add("listening");
-        console.log("mic clicked, listening")
-        recognition.start();
+        if (isListening == false) {
+          voiceButton.classList.add("listening");
+          console.log("mic clicked, listening");
+          isListening = true;
+          recognition.start();
+        } else {
+          voiceButton.classList.remove("listening");
+          console.log("mic clicked, stopping listening");
+          isListening = false;
+          recognition.stop();
+        }
       };
 
       recognition.onresult = (event) => {
-        voiceCommand = event.results[0][0].transcript.toLowerCase();
-        voiceButton.classList.remove("listening");
+        voiceCommand = event.results[event.results.length - 1][0].transcript.toLowerCase();
         const queryInput = document.getElementById("query-input");
-        queryInput.value = voiceCommand;
+        queryInput.value += voiceCommand;
       };
       
 
