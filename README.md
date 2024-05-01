@@ -1,1 +1,3 @@
-# slng
+# SLNG
+
+Welcome to SLNG, an app to help you bridge the gap! We know a lot of young people nowadays use various colloquialisms and slang terms that may be hard for those assimilating into the culture, like immigrants, to understand. That's why we made SLNG, an AI chat interface that's easy to use and easier to understand. We hope to be able to help you overcome generational, lingual, and cultural barriers or even start to use slang yourself!
